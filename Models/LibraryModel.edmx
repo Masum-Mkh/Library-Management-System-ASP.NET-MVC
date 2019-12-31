@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LibraryManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BookIssue">
+          <Key>
+            <PropertyRef Name="Issue_ID" />
+          </Key>
+          <Property Name="Issue_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="Student_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Department" Type="varchar" MaxLength="50" />
+          <Property Name="Student_Semester" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Student_Contact" Type="int" Nullable="false" />
+          <Property Name="Student_Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BookIssue_Date" Type="date" Nullable="false" />
+          <Property Name="Book_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Student_ID" Type="int" Nullable="false" />
+          <Property Name="Book_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookReturn">
+          <Key>
+            <PropertyRef Name="Return_ID" />
+          </Key>
+          <Property Name="Return_ID" Type="int" Nullable="false" />
+          <Property Name="Book_ID" Type="int" Nullable="false" />
+          <Property Name="BookName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BookIssueDate" Type="date" Nullable="false" />
+          <Property Name="BookReturnDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BooksInfoEntry">
+          <Key>
+            <PropertyRef Name="Book_ID" />
+          </Key>
+          <Property Name="Book_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Book_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Author_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Publication" Type="varchar" MaxLength="50" />
+          <Property Name="Purchase_Date" Type="smalldatetime" Nullable="false" />
+          <Property Name="Book_Price" Type="money" />
+          <Property Name="Books_Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="StudentInfoEntry">
+          <Key>
+            <PropertyRef Name="Student_ID" />
+          </Key>
+          <Property Name="Student_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Student_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Enrollment_No" Type="int" Nullable="false" />
+          <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Student_Semester" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Student_Contact" Type="varchar" MaxLength="50" />
+          <Property Name="Student_Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LibraryManagement.dbo.vwBooks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwBooks">
+          <Key>
+            <PropertyRef Name="Book_ID" />
+            <PropertyRef Name="Book_Name" />
+            <PropertyRef Name="Author_Name" />
+            <PropertyRef Name="Purchase_Date" />
+          </Key>
+          <Property Name="Book_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Book_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Author_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Publication" Type="varchar" MaxLength="50" />
+          <Property Name="Purchase_Date" Type="smalldatetime" Nullable="false" />
+          <Property Name="Book_Price" Type="money" />
+          <Property Name="Books_Quantity" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LibraryManagement.dbo.vwData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwData">
+          <Key>
+            <PropertyRef Name="Book_ID" />
+            <PropertyRef Name="Book_Name" />
+            <PropertyRef Name="Author_Name" />
+            <PropertyRef Name="Purchase_Date" />
+            <PropertyRef Name="Student_Name" />
+          </Key>
+          <Property Name="Book_ID" Type="int" Nullable="false" />
+          <Property Name="Book_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Author_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Publication" Type="varchar" MaxLength="50" />
+          <Property Name="Purchase_Date" Type="smalldatetime" Nullable="false" />
+          <Property Name="Book_Price" Type="money" />
+          <Property Name="Books_Quantity" Type="int" />
+          <Property Name="Student_Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LibraryManagement.dbo.vwStudents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwStudents">
+          <Key>
+            <PropertyRef Name="Student_Name" />
+            <PropertyRef Name="Enrollment_No" />
+            <PropertyRef Name="Department" />
+            <PropertyRef Name="Student_Semester" />
+          </Key>
+          <Property Name="Student_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Enrollment_No" Type="int" Nullable="false" />
+          <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Student_Semester" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Student_Contact" Type="varchar" MaxLength="50" />
+          <Property Name="Student_Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="LibraryManagementModelStoreContainer">
+          <EntitySet Name="BookIssue" EntityType="Self.BookIssue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookReturn" EntityType="Self.BookReturn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BooksInfoEntry" EntityType="Self.BooksInfoEntry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentInfoEntry" EntityType="Self.StudentInfoEntry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vwBooks" EntityType="Self.vwBooks" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwBooks].[Book_ID] AS [Book_ID], 
+    [vwBooks].[Book_Name] AS [Book_Name], 
+    [vwBooks].[Author_Name] AS [Author_Name], 
+    [vwBooks].[Publication] AS [Publication], 
+    [vwBooks].[Purchase_Date] AS [Purchase_Date], 
+    [vwBooks].[Book_Price] AS [Book_Price], 
+    [vwBooks].[Books_Quantity] AS [Books_Quantity]
+    FROM [dbo].[vwBooks] AS [vwBooks]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwData" EntityType="Self.vwData" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwData].[Book_ID] AS [Book_ID], 
+    [vwData].[Book_Name] AS [Book_Name], 
+    [vwData].[Author_Name] AS [Author_Name], 
+    [vwData].[Publication] AS [Publication], 
+    [vwData].[Purchase_Date] AS [Purchase_Date], 
+    [vwData].[Book_Price] AS [Book_Price], 
+    [vwData].[Books_Quantity] AS [Books_Quantity], 
+    [vwData].[Student_Name] AS [Student_Name]
+    FROM [dbo].[vwData] AS [vwData]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwStudents" EntityType="Self.vwStudents" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwStudents].[Student_Name] AS [Student_Name], 
+    [vwStudents].[Enrollment_No] AS [Enrollment_No], 
+    [vwStudents].[Department] AS [Department], 
+    [vwStudents].[Student_Semester] AS [Student_Semester], 
+    [vwStudents].[Student_Contact] AS [Student_Contact], 
+    [vwStudents].[Student_Email] AS [Student_Email]
+    FROM [dbo].[vwStudents] AS [vwStudents]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LibraryManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BookIssue">
+          <Key>
+            <PropertyRef Name="Issue_ID" />
+          </Key>
+          <Property Name="Issue_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="Student_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Student_Semester" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Student_Contact" Type="Int32" Nullable="false" />
+          <Property Name="Student_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BookIssue_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Book_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Student_ID" Type="Int32" Nullable="false" />
+          <Property Name="Book_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookReturn">
+          <Key>
+            <PropertyRef Name="Return_ID" />
+          </Key>
+          <Property Name="Return_ID" Type="Int32" Nullable="false" />
+          <Property Name="Book_ID" Type="Int32" Nullable="false" />
+          <Property Name="BookName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BookIssueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BookReturnDate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="BooksInfoEntry">
+          <Key>
+            <PropertyRef Name="Book_ID" />
+          </Key>
+          <Property Name="Book_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Book_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Author_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Publication" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Purchase_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Book_Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Books_Quantity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="StudentInfoEntry">
+          <Key>
+            <PropertyRef Name="Student_ID" />
+          </Key>
+          <Property Name="Student_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Student_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Enrollment_No" Type="Int32" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Student_Semester" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Student_Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Student_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwBook">
+          <Key>
+            <PropertyRef Name="Book_ID" />
+            <PropertyRef Name="Book_Name" />
+            <PropertyRef Name="Author_Name" />
+            <PropertyRef Name="Purchase_Date" />
+          </Key>
+          <Property Name="Book_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Book_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Author_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Publication" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Purchase_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Book_Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Books_Quantity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vwData">
+          <Key>
+            <PropertyRef Name="Book_ID" />
+            <PropertyRef Name="Book_Name" />
+            <PropertyRef Name="Author_Name" />
+            <PropertyRef Name="Purchase_Date" />
+            <PropertyRef Name="Student_Name" />
+          </Key>
+          <Property Name="Book_ID" Type="Int32" Nullable="false" />
+          <Property Name="Book_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Author_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Publication" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Purchase_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Book_Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Books_Quantity" Type="Int32" />
+          <Property Name="Student_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vwStudent">
+          <Key>
+            <PropertyRef Name="Student_Name" />
+            <PropertyRef Name="Enrollment_No" />
+            <PropertyRef Name="Department" />
+            <PropertyRef Name="Student_Semester" />
+          </Key>
+          <Property Name="Student_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Enrollment_No" Type="Int32" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Student_Semester" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Student_Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Student_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="LibraryManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BookIssues" EntityType="Self.BookIssue" />
+          <EntitySet Name="BookReturns" EntityType="Self.BookReturn" />
+          <EntitySet Name="BooksInfoEntries" EntityType="Self.BooksInfoEntry" />
+          <EntitySet Name="StudentInfoEntries" EntityType="Self.StudentInfoEntry" />
+          <EntitySet Name="vwBooks" EntityType="Self.vwBook" />
+          <EntitySet Name="vwDatas" EntityType="Self.vwData" />
+          <EntitySet Name="vwStudents" EntityType="Self.vwStudent" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LibraryManagementModelStoreContainer" CdmEntityContainer="LibraryManagementEntities">
+          <EntitySetMapping Name="BookIssues">
+            <EntityTypeMapping TypeName="LibraryManagementModel.BookIssue">
+              <MappingFragment StoreEntitySet="BookIssue">
+                <ScalarProperty Name="Issue_ID" ColumnName="Issue_ID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="Student_Name" ColumnName="Student_Name" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Student_Semester" ColumnName="Student_Semester" />
+                <ScalarProperty Name="Student_Contact" ColumnName="Student_Contact" />
+                <ScalarProperty Name="Student_Email" ColumnName="Student_Email" />
+                <ScalarProperty Name="BookIssue_Date" ColumnName="BookIssue_Date" />
+                <ScalarProperty Name="Book_Name" ColumnName="Book_Name" />
+                <ScalarProperty Name="Student_ID" ColumnName="Student_ID" />
+                <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookReturns">
+            <EntityTypeMapping TypeName="LibraryManagementModel.BookReturn">
+              <MappingFragment StoreEntitySet="BookReturn">
+                <ScalarProperty Name="Return_ID" ColumnName="Return_ID" />
+                <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+                <ScalarProperty Name="BookName" ColumnName="BookName" />
+                <ScalarProperty Name="BookIssueDate" ColumnName="BookIssueDate" />
+                <ScalarProperty Name="BookReturnDate" ColumnName="BookReturnDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BooksInfoEntries">
+            <EntityTypeMapping TypeName="LibraryManagementModel.BooksInfoEntry">
+              <MappingFragment StoreEntitySet="BooksInfoEntry">
+                <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+                <ScalarProperty Name="Book_Name" ColumnName="Book_Name" />
+                <ScalarProperty Name="Author_Name" ColumnName="Author_Name" />
+                <ScalarProperty Name="Publication" ColumnName="Publication" />
+                <ScalarProperty Name="Purchase_Date" ColumnName="Purchase_Date" />
+                <ScalarProperty Name="Book_Price" ColumnName="Book_Price" />
+                <ScalarProperty Name="Books_Quantity" ColumnName="Books_Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentInfoEntries">
+            <EntityTypeMapping TypeName="LibraryManagementModel.StudentInfoEntry">
+              <MappingFragment StoreEntitySet="StudentInfoEntry">
+                <ScalarProperty Name="Student_ID" ColumnName="Student_ID" />
+                <ScalarProperty Name="Student_Name" ColumnName="Student_Name" />
+                <ScalarProperty Name="Enrollment_No" ColumnName="Enrollment_No" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Student_Semester" ColumnName="Student_Semester" />
+                <ScalarProperty Name="Student_Contact" ColumnName="Student_Contact" />
+                <ScalarProperty Name="Student_Email" ColumnName="Student_Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwBooks">
+            <EntityTypeMapping TypeName="LibraryManagementModel.vwBook">
+              <MappingFragment StoreEntitySet="vwBooks">
+                <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+                <ScalarProperty Name="Book_Name" ColumnName="Book_Name" />
+                <ScalarProperty Name="Author_Name" ColumnName="Author_Name" />
+                <ScalarProperty Name="Publication" ColumnName="Publication" />
+                <ScalarProperty Name="Purchase_Date" ColumnName="Purchase_Date" />
+                <ScalarProperty Name="Book_Price" ColumnName="Book_Price" />
+                <ScalarProperty Name="Books_Quantity" ColumnName="Books_Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwDatas">
+            <EntityTypeMapping TypeName="LibraryManagementModel.vwData">
+              <MappingFragment StoreEntitySet="vwData">
+                <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+                <ScalarProperty Name="Book_Name" ColumnName="Book_Name" />
+                <ScalarProperty Name="Author_Name" ColumnName="Author_Name" />
+                <ScalarProperty Name="Publication" ColumnName="Publication" />
+                <ScalarProperty Name="Purchase_Date" ColumnName="Purchase_Date" />
+                <ScalarProperty Name="Book_Price" ColumnName="Book_Price" />
+                <ScalarProperty Name="Books_Quantity" ColumnName="Books_Quantity" />
+                <ScalarProperty Name="Student_Name" ColumnName="Student_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwStudents">
+            <EntityTypeMapping TypeName="LibraryManagementModel.vwStudent">
+              <MappingFragment StoreEntitySet="vwStudents">
+                <ScalarProperty Name="Student_Name" ColumnName="Student_Name" />
+                <ScalarProperty Name="Enrollment_No" ColumnName="Enrollment_No" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Student_Semester" ColumnName="Student_Semester" />
+                <ScalarProperty Name="Student_Contact" ColumnName="Student_Contact" />
+                <ScalarProperty Name="Student_Email" ColumnName="Student_Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

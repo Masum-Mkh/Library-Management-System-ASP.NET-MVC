@@ -1,0 +1,66 @@
+﻿@model ProjectWebApplicationMVC.Models.BooksInfoEntry
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BooksInfoEntry</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Book_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Publication)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Publication)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Purchase_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Purchase_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Books_Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Books_Quantity)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Book_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ProjectWebApplicationMVC.Models.StudentInfoEntry>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="text-align: center">Student Index</h2>
+
+<p class="row">
+   
+
+    <span class=" btn-group buttons-right">
+        @Html.ActionLink("Add New", "Create", "",new { @class = "btn btn-success" })
+        @Html.ActionLink("Get PDF", "GenerateReport", new {format = "pdf"}, new {@class = "btn btn-danger"})
+        @Html.ActionLink("Get Excel", "GenerateReport", new {format = "excel"}, new {@class = "btn btn-warning"})
+        @Html.ActionLink("Get Word", "GenerateReport", new {format = "word"}, new {@class = "btn btn-info"})
+    </span>
+</p>
+<table  id="example" class="table table-bordered datatable table-hover dataTable table-striped table-condensed active stripe" style="width:100%">
+    <tr>
+        <th>
+            @Html.DisplayName("Student Name")
+            @*@Html.DisplayNameFor(model => model.Student_Name)*@
+        </th>
+        <th>
+            @Html.DisplayName("Enrollment No")
+            @*@Html.DisplayNameFor(model => model.Enrollment_No)*@
+        </th>
+        <th>
+            @Html.DisplayName("Department")
+            @*@Html.DisplayNameFor(model => model.Department)*@
+        </th>
+        <th>
+            @Html.DisplayName("Semester")
+            @*@Html.DisplayNameFor(model => model.Student_Semester)*@
+        </th>
+        <th>
+            @Html.DisplayName("Contact")
+            @*@Html.DisplayNameFor(model => model.Student_Contact)*@
+        </th>
+        <th>
+            @Html.DisplayName("Email")
+            @*@Html.DisplayNameFor(model => model.Student_Email)*@
+        </th>
+        <th style="text-align: center">
+            Action
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Enrollment_No)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student_Semester)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student_Contact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student_Email)
+            </td>
+            <td class="btn-group">
+                @Html.ActionLink("Edit", "Edit", new { id = item.Student_ID }, new { @class = "btn btn-success"}) 
+                @Html.ActionLink("Details", "Details", new { id = item.Student_ID }, new { @class = "btn btn-info" }) 
+                @Html.ActionLink("Delete", "Delete", new { id = item.Student_ID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
